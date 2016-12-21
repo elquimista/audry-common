@@ -225,9 +225,11 @@ const bulkCreateOptions = {
     }], bulkCreateOptions);
 
     // PatientTablet data
+    nurses[0].user = await nurses[0].getUser();
     PatientTablet.bulkCreate([{
       patientId: patients[0].id,
-      tabletId: tablets[0].id
+      tabletId: tablets[0].id,
+      assignerId: nurses[0].user.id
     }], bulkCreateOptions);
   }
   catch (err) {
