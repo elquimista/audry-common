@@ -1,8 +1,8 @@
 'use strict';
 
 const {
-  Bed, Hospital, Nurse, NurseStation, Patient, Request, PatientTablet, Physician, Response, Room,
-  Service, ServiceCategory, Tablet, User, Ward, WardService
+  Bed, Hospital, Nurse, NurseStation, Patient, Request, PatientTablet, Physician,
+  Response, Room, Service, ServiceCategory, Tablet, User, Ward, WardService, Language
 } = require('../lib/models');
 
 const bulkCreateOptions = {
@@ -24,6 +24,21 @@ const bulkCreateOptions = {
       beaconUuid: 'NYPH-B1',
       major: 1
     });
+
+    // Language data
+    let languages = await Language.bulkCreate([{
+      name: 'English'
+    }, {
+      name: 'Français'
+    }, {
+      name: 'Espanõl'
+    }, {
+      name: 'Deutsch'
+    }, {
+      name: 'Русскии'
+    }, {
+      name: 'Português'
+    }], bulkCreateOptions);
 
     // NurseStation data
     let nurseStations = await NurseStation.bulkCreate([{
@@ -152,7 +167,7 @@ const bulkCreateOptions = {
       lastName: 'Lee',
       phoneNumber: '',
       bedId: beds[0].id,
-      language: 'English',
+      languageId: languages[0].id,
       primaryNurseId: nurses[0].id,
       primaryPhysicianId: physicians[0].id,
       interfaceWardId: wards[0].id
@@ -161,7 +176,7 @@ const bulkCreateOptions = {
       lastName: 'Mensah',
       phoneNumber: '',
       bedId: beds[1].id,
-      language: 'French',
+      languageId: languages[1].id,
       primaryNurseId: nurses[0].id,
       primaryPhysicianId: physicians[0].id,
       interfaceWardId: wards[0].id

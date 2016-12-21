@@ -25,8 +25,12 @@ module.exports = {
         },
         onDelete: 'set null'
       },
-      language: {
-        type: Sequelize.STRING
+      languageId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Languages'
+        },
+        onDelete: 'set null'
       },
       primaryNurseId: {
         type: Sequelize.INTEGER,
