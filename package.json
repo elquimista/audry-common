@@ -1,0 +1,30 @@
+{
+  "name": "audry-common",
+  "version": "0.0.1",
+  "description": "Common library for Audry (models, migrations etc)",
+  "main": "index.js",
+  "scripts": {
+    "db:migrate": "sequelize db:migrate && node --harmony-async-await db/migrate2.js",
+    "db:migrate:undo:all": "sequelize db:migrate:undo:all",
+    "db:seed": "node --harmony-async-await db/seeds.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/uphack/audry-common.git"
+  },
+  "author": "darkturtle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uphack/audry-common/issues"
+  },
+  "homepage": "https://github.com/uphack/audry-common#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.1",
+    "mssql": "^3.3.0",
+    "sequelize": "^3.27.0"
+  },
+  "devDependencies": {
+    "pryjs": "^1.0.3"
+  }
+}
