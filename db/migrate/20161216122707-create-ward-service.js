@@ -24,21 +24,18 @@ module.exports = {
         onDelete: 'cascade'
       },
       level1: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       level2: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       level3: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       visible: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: true
       }
     })
     .then(() => queryInterface.addIndex('WardsServices', ['wardId', 'serviceId'], { indicesType: 'UNIQUE' }));

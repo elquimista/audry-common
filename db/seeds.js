@@ -1,8 +1,24 @@
 'use strict';
 
 const {
-  Bed, Hospital, Nurse, NurseStation, Patient, Request, PatientTablet, Physician,
-  Response, Room, Service, ServiceCategory, Tablet, User, Ward, WardService, Language
+  Bed,
+  Hospital,
+  Language,
+  Nurse,
+  NurseStation,
+  Patient,
+  PatientTablet,
+  Physician,
+  Request,
+  Response,
+  Room,
+  Service,
+  ServiceCategory,
+  Tablet,
+  User,
+  Ward,
+  WardService,
+  WardServiceCategory,
 } = require('../lib/models');
 
 const bulkCreateOptions = {
@@ -88,6 +104,21 @@ const bulkCreateOptions = {
       hospitalId: hospital.id
     }], bulkCreateOptions);
 
+    // WardServiceCategory data
+    WardServiceCategory.bulkCreate([{
+      serviceCategoryId: serviceCategories[0].id,
+      wardId: wards[0].id,
+      level1: 5,
+      level2: 10,
+      level3: 15
+    }, {
+      serviceCategoryId: serviceCategories[1].id,
+      wardId: wards[0].id,
+      level1: 10,
+      level2: 20,
+      level3: 30
+    }], bulkCreateOptions);
+
     // Service data
     let services = await Service.bulkCreate([{
       categoryId: serviceCategories[0].id,
@@ -117,6 +148,25 @@ const bulkCreateOptions = {
       description: '',
       notificationMessage: '',
       launchAppUrl: ''
+    }], bulkCreateOptions);
+
+    // WardService data
+    let wardServices = await WardService.bulkCreate([{
+      wardId: wards[0].id,
+      serviceId: services[0].id,
+      level1: 2,
+      level2: 5,
+      level3: 10,
+    }, {
+      wardId: wards[0].id,
+      serviceId: services[1].id,
+    }, {
+      wardId: wards[0].id,
+      serviceId: services[2].id,
+    }, {
+      wardId: wards[0].id,
+      serviceId: services[3].id,
+      visible: false,
     }], bulkCreateOptions);
 
     // User data
@@ -180,23 +230,6 @@ const bulkCreateOptions = {
       primaryNurseId: nurses[0].id,
       primaryPhysicianId: physicians[0].id,
       interfaceWardId: wards[0].id
-    }], bulkCreateOptions);
-
-    // WardService data
-    let wardServices = await WardService.bulkCreate([{
-      wardId: wards[0].id,
-      serviceId: services[0].id,
-      level1: 5,
-      level2: 10,
-      level3: 15,
-      visible: true
-    }, {
-      wardId: wards[0].id,
-      serviceId: services[1].id,
-      level1: 5,
-      level2: 10,
-      level3: 15,
-      visible: true
     }], bulkCreateOptions);
 
     // Request data
