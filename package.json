@@ -4,9 +4,9 @@
   "description": "Common library for Audry (models, migrations etc)",
   "main": "index.js",
   "scripts": {
-    "db:migrate": "sequelize db:migrate && node --harmony-async-await db/migrate2.js",
-    "db:migrate:undo:all": "sequelize db:migrate:undo:all",
-    "db:seed": "node --harmony-async-await db/seeds.js",
+    "db:migrate": "nf start db-migrate -j Procfile.dev -e ../../.env",
+    "db:migrate:undo:all": "nf start db-migrate-undo-all -j Procfile.dev -e ../../.env",
+    "db:seed": "nf start db-seed -j Procfile.dev -e ../../.env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
