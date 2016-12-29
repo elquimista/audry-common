@@ -16,12 +16,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      webPathScope: {
+        type: Sequelize.STRING,
+      },
+      webPathDefault: {
+        type: Sequelize.STRING,
+      },
       launchUrl: {
         type: Sequelize.STRING,
-        allowNull: false
       }
-    })
-    .then(() => queryInterface.addIndex('Apps', ['launchUrl'], { indicesType: 'UNIQUE' }));
+    });
   },
   down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('Apps');

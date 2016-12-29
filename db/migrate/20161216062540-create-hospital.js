@@ -51,7 +51,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       }
-    });
+    })
+    .then(results => queryInterface.addIndex('Hospitals', ['name', 'division', 'address1'], { indicesType: 'UNIQUE' }));
   },
   down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('Hospitals');

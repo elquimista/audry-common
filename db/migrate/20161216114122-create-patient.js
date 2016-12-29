@@ -70,8 +70,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    })
-    .then(() => queryInterface.addIndex('Patients', ['bedId'], { indicesType: 'UNIQUE' }));
+    });
   },
   down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('Patients');

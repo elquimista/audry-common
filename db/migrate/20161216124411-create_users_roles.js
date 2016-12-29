@@ -24,6 +24,14 @@ module.exports = {
           model: 'Roles'
         },
         onDelete: 'cascade'
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     })
     .then(() => queryInterface.addIndex('UsersRoles', ['userId', 'roleId'], { indicesType: 'UNIQUE' }));
