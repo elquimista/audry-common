@@ -21,6 +21,7 @@
   "homepage": "https://github.com/uphack/audry-common#readme",
   "dependencies": {
     "bcrypt": "^1.0.1",
+    "cloudinary": "^1.5.0",
     "mssql": "^3.3.0",
     "sequelize": "^3.27.0"
   },
