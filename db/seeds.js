@@ -1,6 +1,7 @@
 'use strict';
 
 const {
+  App,
   Bed,
   Hospital,
   Language,
@@ -11,6 +12,7 @@ const {
   Physician,
   Request,
   Response,
+  Role,
   Room,
   Service,
   ServiceCategory,
@@ -29,15 +31,15 @@ const bulkCreateOptions = {
   try {
     // Hospital data
     let hospital = await Hospital.create({
-      name: 'NewYork-Presbyterian/Weill Cornell Medical Center',
-      division: '',
-      address1: '525 E 68th St',
-      city: 'New York City',
+      name: 'NewYork-Presbyterian',
+      division: 'Westchester Division',
+      address1: '21 Bloomingdale Rd, White Plains',
+      city: 'New York',
       state: 'NY',
-      zipcode: '10065',
-      logoLightFileName: '',
-      logoDarkFileName: '',
-      beaconUuid: 'NYPH-B1',
+      zipcode: '10605',
+      logoLightFileName: 'http://res.cloudinary.com/darkturtle/image/upload/v1483021424/rqfisof8g5llzmomnwkv.png',
+      logoDarkFileName: 'http://res.cloudinary.com/darkturtle/image/upload/v1483022230/cbgrtjlkirxpdrujv879.png',
+      beaconUuid: 'NYPHWD-B1',
       major: 1
     });
 
@@ -123,28 +125,28 @@ const bulkCreateOptions = {
     let services = await Service.bulkCreate([{
       categoryId: serviceCategories[0].id,
       name: 'Need Medicine',
-      icon: '',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/v1484045989/yiizo9sbwcy4atitkgw7.png',
       description: '',
       notificationMessage: '',
       launchAppUrl: ''
     }, {
       categoryId: serviceCategories[0].id,
       name: 'Feeling Pain',
-      icon: '',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/v1484136342/pain-small_pwazlh.png',
       description: '',
       notificationMessage: '',
       launchAppUrl: ''
     }, {
       categoryId: serviceCategories[1].id,
-      name: 'Hospital Map',
-      icon: '',
+      name: 'My Charts',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/v1484136481/charts-small_hcv7a0.png',
       description: '',
       notificationMessage: '',
       launchAppUrl: ''
     }, {
       categoryId: serviceCategories[1].id,
       name: 'Internet',
-      icon: '',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/v1484136506/browser-small_em1dxy.png',
       description: '',
       notificationMessage: '',
       launchAppUrl: ''
@@ -167,6 +169,17 @@ const bulkCreateOptions = {
       wardId: wards[0].id,
       serviceId: services[3].id,
       visible: false,
+    }], bulkCreateOptions);
+
+    // Role data
+    const roles = await Role.bulkCreate([{
+      name: 'admin'
+    }, {
+      name: 'physician'
+    }, {
+      name: 'nurse'
+    }, {
+      name: 'supervisor'
     }], bulkCreateOptions);
 
     // User data
@@ -195,6 +208,15 @@ const bulkCreateOptions = {
       lastName: 'Stewart',
       accessCode: 'xyz'
     }], bulkCreateOptions);
+
+    users[0].addRole(roles[0]);
+    users[0].save();
+    users[1].addRole(roles[2]);
+    users[1].save();
+    users[2].addRole(roles[1]);
+    users[2].save();
+    users[3].addRole(roles[2]);
+    users[3].save();
 
     // Nurse data
     let nurses = await Nurse.bulkCreate([{
@@ -264,6 +286,26 @@ const bulkCreateOptions = {
       tabletId: tablets[0].id,
       assignerId: nurses[0].user.id
     }], bulkCreateOptions);
+
+    // App data
+    const apps = await App.bulkCreate([{
+      title: 'Configuration',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/configuration_uawgf8.png',
+      webPathScope: '/configuration',
+      webPathDefault: '/configuration/wardsServiceCategories',
+    }, {
+      title: 'Workflow',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/workflow_btsbeb.png',
+    }, {
+      title: 'Nurses Station',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/nurses-station_ccm3yk.png',
+    }, {
+      title: 'Patients',
+      icon: 'http://res.cloudinary.com/darkturtle/image/upload/patients_rnrexz.png',
+    }], bulkCreateOptions);
+
+    roles[0].setApps(apps);
+    roles[0].save();
   }
   catch (err) {
     console.log(`ERROR: ${err.stack}`);
