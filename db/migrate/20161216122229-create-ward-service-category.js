@@ -24,15 +24,12 @@ module.exports = {
         }
       },
       level1: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       level2: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       level3: {
-        allowNull: false,
         type: Sequelize.INTEGER
       }
     })
