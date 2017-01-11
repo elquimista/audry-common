@@ -44,6 +44,11 @@ module.exports = {
         type: Sequelize.STRING(256),
         defaultValue: 'level1'
       },
+      statusUpdatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -52,8 +57,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    })
-    .then(() => queryInterface.addIndex('Requests', ['patientId', 'wardServiceId'], { indicesType: 'UNIQUE' }));
+    });
   },
   down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('Requests');
