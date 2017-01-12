@@ -1,3 +1,0 @@
-db-migrate: sequelize db:migrate && node --harmony-async-await db/migrate2.js
-db-migrate-undo-all: sequelize db:migrate:undo:all
-db-seed: node --harmony-async-await db/seeds.js
