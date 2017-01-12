@@ -193,6 +193,7 @@ const bulkCreateOptions = {
       password: '123',
       firstName: 'Lindsey',
       lastName: 'Lohan',
+      phoneNumber: '6182341102',
       accessCode: 'abc',
     }, {
       username: 'drwatson',
@@ -200,12 +201,14 @@ const bulkCreateOptions = {
       password: ' ',
       firstName: 'John',
       lastName: 'Watson',
+      phoneNumber: '2948749012',
     }, {
       username: 'kristen',
       email: 'kristen@gmail.com',
       password: ' ',
       firstName: 'Kristen',
       lastName: 'Stewart',
+      phoneNumber: '4891028833',
       accessCode: 'xyz'
     }], bulkCreateOptions);
 
