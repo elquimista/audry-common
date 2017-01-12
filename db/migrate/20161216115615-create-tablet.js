@@ -24,6 +24,9 @@ module.exports = {
       },
       lastKnownBatteryLevel: {
         type: Sequelize.INTEGER
+      },
+      apnDeviceToken: {
+        type: Sequelize.STRING
       }
     })
     .then(() => queryInterface.addIndex('Tablets', ['udid'], { indicesType: 'UNIQUE' }));

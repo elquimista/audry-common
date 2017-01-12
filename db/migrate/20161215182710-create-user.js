@@ -44,6 +44,9 @@ module.exports = {
       accessCode: {
         type: Sequelize.STRING
       },
+      apnDeviceToken: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
